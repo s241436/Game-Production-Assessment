@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField] float jumpForce;
     [SerializeField] float force;
-    [SerializeField] GameObject boxSize;
+    [SerializeField] Vector3 boxSize;
     [SerializeField] LayerMask GroundMask;
 
     bool jumpRight;
@@ -47,27 +47,31 @@ public class Movement : MonoBehaviour
     {
         float currentHorizontalInput = Input.GetAxisRaw("Horizontal");
 
-        if (jumpForward)
+        if (CheckIfGrounded())
         {
-            rb.AddForce(Vector3.forward * force, ForceMode.Impulse);
+            if (jumpForward)
+            {
+                rb.AddForce(Vector3.forward * force, ForceMode.Impulse);
 
-            rb.velocity = Vector3.up * jumpForce;
-            jumpForward = false;
-        }
-        else if (jumpRight)
-        {
-            rb.AddForce(Vector3.right * force, ForceMode.Impulse);
+                rb.velocity = Vector3.up * jumpForce;
+                jumpForward = false;
+            }
+            else if (jumpRight)
+            {
+                rb.AddForce(Vector3.right * force, ForceMode.Impulse);
 
-            rb.velocity = Vector3.up * jumpForce;
-            jumpRight = false;
-        }
-        else if (jumpLeft)
-        {
-            rb.AddForce(Vector3.left * force, ForceMode.Impulse);
+                rb.velocity = Vector3.up * jumpForce;
+                jumpRight = false;
+            }
+            else if (jumpLeft)
+            {
+                rb.AddForce(Vector3.left * force, ForceMode.Impulse);
 
-            rb.velocity = Vector3.up * jumpForce;
-            jumpLeft = false;
+                rb.velocity = Vector3.up * jumpForce;
+                jumpLeft = false;
+            }
         }
+        
 
        
     }

@@ -179,12 +179,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 91739277}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcbd340adbf3733439f2e4dde16a18f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 77200403298c19b4e9d0c232583d1804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 91739278}
   jumpForce: 5
   force: 10
+  boxSize: {x: 1, y: 1, z: 1}
+  GroundMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!65 &91739280
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -467,10 +471,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d92ef086a9ffc0e429cc693601aa75ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 076eb68f6696c12459cf285db0c49199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.5
 --- !u!1 &1258507474
 GameObject:
   m_ObjectHideFlags: 0

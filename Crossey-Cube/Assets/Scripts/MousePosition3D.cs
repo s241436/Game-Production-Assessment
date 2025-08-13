@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MousePosition3D : MonoBehaviour
 {
-    [SerializeField] private Camera mainCamera;
+  /*  [SerializeField] private Camera mainCamera;
 
     private void Update()
     {
@@ -19,5 +19,5 @@ public class MousePosition3D : MonoBehaviour
         {
             Debug.Log("Mouse is not over a collider.");
         }
-    }
+    }*/
 }
