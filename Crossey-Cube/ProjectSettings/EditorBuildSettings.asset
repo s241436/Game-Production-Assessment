@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/James Car.unity
+    guid: 9530c70a94944a546b1a5fe64a4bcb8e
   m_configObjects: {}
