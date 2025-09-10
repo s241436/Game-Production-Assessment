@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 0f;
 
 
-    // Update is called once per frame
+    
     void Update()
     {
         Vector3 velocity = Vector3.zero;
