@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody rb;
     public float speed = 0f;
-
+    public float score = 0;
 
     
     void Update()
