@@ -6,7 +6,7 @@ public class SectionInstantiate : MonoBehaviour
 {
 
     public GameObject[] GroundObstacles;
-
+    public PlayerController PlayerController;
 
     int random = 0;
 
@@ -14,9 +14,13 @@ public class SectionInstantiate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        PlayerController = GetComponent<PlayerController>();
+
         if (other.gameObject.CompareTag("Trigger"))
         {
             SpawnTile();
+            PlayerController.score += 20;
+            Debug.Log($"+{PlayerController.score} Distance");
         }
     }
 
