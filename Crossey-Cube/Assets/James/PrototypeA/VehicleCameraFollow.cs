@@ -6,7 +6,7 @@ public class CameraFollow : MonoBehaviour
 {
     // Start is called before the first frame update
     public Vector3 offset = new Vector3(0f, 0f, -10f);
-    private float smoothTime = 0.25f;
+    [SerializeField] float smoothTime = 0.15f;
     private Vector3 velocity = Vector3.zero;
 
 
@@ -19,6 +19,7 @@ public class CameraFollow : MonoBehaviour
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
 
         transform.LookAt(target);
+
     }
 
 

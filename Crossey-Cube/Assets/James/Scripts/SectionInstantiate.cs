@@ -6,33 +6,45 @@ public class SectionInstantiate : MonoBehaviour
 {
 
     public GameObject[] GroundObstacles;
-    public PlayerController PlayerController;
 
     int random = 0;
 
     Vector3 nextSpawnPoint;
 
+    [SerializeField] bool tileSpawned = false;
+
     private void OnTriggerEnter(Collider other)
     {
-        PlayerController = GetComponent<PlayerController>();
+       
 
         if (other.gameObject.CompareTag("Trigger"))
         {
-            SpawnTile();
-            PlayerController.score += 20;
-            Debug.Log($"+{PlayerController.score} Distance");
+            if (tileSpawned == false)
+            {
+                SpawnTile();
+                SpawnTile();
+                SpawnTile();
+                tileSpawned = true;
+            }
+
+            
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        tileSpawned = false;
     }
 
     void SpawnTile()
     {
-        
+
         random = Random.Range(0, GroundObstacles.Length);
 
-        GameObject tile = Instantiate(GroundObstacles[random], nextSpawnPoint, Quaternion.identity);
+        GameObject tile = Instantiate(GroundObstacles[random], nextSpawnPoint, Quaternion.Euler(0, -90, 0));
 
-        nextSpawnPoint = tile.transform.GetChild(1).transform.position; 
-        
+        nextSpawnPoint = tile.transform.GetChild(1).transform.position;
+
 
     }
 
