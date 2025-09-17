@@ -1,6 +1,8 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class CarController : MonoBehaviour
 {
@@ -29,7 +31,6 @@ public class CarController : MonoBehaviour
     public ControlMode control;
 
     public float maxAcceleration = 30.0f;
-    public float brakeAcceleration = 50.0f;
 
     public float turnSensitivity = 1.0f;
     public float maxSteerAngle = 30.0f;
@@ -41,22 +42,28 @@ public class CarController : MonoBehaviour
     float moveInput;
     float steerInput;
 
+    public float score = 0;
+    public TextMeshProUGUI Score;
+
     private Rigidbody carRb;
-/*
-    private CarLights carLights;
-*/
-    void Start()
+    
+    /*
+        private CarLights carLights;
+    */
+    public void Start()
     {
         carRb = GetComponent<Rigidbody>();
         carRb.centerOfMass = _centerOfMass;
+        moveInput = 1.0f;
 
        /* carLights = GetComponent<CarLights>();*/
     }
 
-    void Update()
+    public void FixedUpdate()
     {
         GetInputs();
         AnimateWheels();
+        Score.text = score.ToString();
         /*WheelEffects();*/
     }
 
@@ -64,7 +71,6 @@ public class CarController : MonoBehaviour
     {
         Move();
         Steer();
-        Brake();
     }
 
     public void MoveInput(float input)
@@ -76,12 +82,14 @@ public class CarController : MonoBehaviour
     {
         steerInput = input;
     }
-
     void GetInputs()
     {
+        // Force forward motion regardless of control mode
+        moveInput = 1.0f;
+
+        // Optional: keep steering input if using keyboard
         if (control == ControlMode.Keyboard)
         {
-            moveInput = Input.GetAxis("Vertical");
             steerInput = Input.GetAxis("Horizontal");
         }
     }
@@ -103,30 +111,6 @@ public class CarController : MonoBehaviour
                 var _steerAngle = steerInput * turnSensitivity * maxSteerAngle;
                 wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, _steerAngle, 0.6f);
             }
-        }
-    }
-
-    void Brake()
-    {
-        if (Input.GetKey(KeyCode.Space) || moveInput == 0)
-        {
-            foreach (var wheel in wheels)
-            {
-                wheel.wheelCollider.brakeTorque = 300 * brakeAcceleration * Time.deltaTime;
-            }
-
-     /*       carLights.isBackLightOn = true;
-            carLights.OperateBackLights();*/
-        }
-        else
-        {
-            foreach (var wheel in wheels)
-            {
-                wheel.wheelCollider.brakeTorque = 0;
-            }
-
-            /*carLights.isBackLightOn = false;
-            carLights.OperateBackLights();*/
         }
     }
 

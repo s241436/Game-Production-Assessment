@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 velocity = Vector3.zero;
 
+        rb.AddForce(Vector3.right * speed, ForceMode.Force);
+
         if (Input.GetKey(KeyCode.RightArrow))
         {
             rb.AddForce(-Vector3.forward * speed, ForceMode.Force);

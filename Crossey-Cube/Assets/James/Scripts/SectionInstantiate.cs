@@ -6,6 +6,7 @@ public class SectionInstantiate : MonoBehaviour
 {
 
     public GameObject[] GroundObstacles;
+    public CarController MuscleCar;
 
     int random = 0;
 
@@ -15,7 +16,6 @@ public class SectionInstantiate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-       
 
         if (other.gameObject.CompareTag("Trigger"))
         {
@@ -26,14 +26,19 @@ public class SectionInstantiate : MonoBehaviour
                 SpawnTile();
                 tileSpawned = true;
             }
-
-            
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
         tileSpawned = false;
+        
+        MuscleCar = GetComponent<CarController>();
+
+        MuscleCar.score += 20;
+        Debug.Log($"+{MuscleCar.score} Distance");
+
+        Destroy(other.gameObject);
     }
 
     void SpawnTile()
