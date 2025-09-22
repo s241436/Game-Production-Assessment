@@ -10,7 +10,7 @@ public class SectionInstantiate : MonoBehaviour
 
     int random = 0;
 
-    Vector3 nextSpawnPoint;
+    [SerializeField] Vector3 nextSpawnPoint;
 
     [SerializeField] bool tileSpawned = false;
 
