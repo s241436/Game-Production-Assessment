@@ -189,12 +189,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1874855988459816138, guid: 39d611d289bc36746ad20625c8abc0eb, type: 3}
       propertyPath: GroundObstacles.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1874855988459816138, guid: 39d611d289bc36746ad20625c8abc0eb, type: 3}
       propertyPath: GroundObstacles.Array.data[1]
       value: 
-      objectReference: {fileID: 6814893157161088092, guid: d47379f4c8289d0498e6e77ba69db1bc, type: 3}
+      objectReference: {fileID: 3225513985693095470, guid: cd427c5f837b5cc44bcfb48c76751316, type: 3}
+    - target: {fileID: 1874855988459816138, guid: 39d611d289bc36746ad20625c8abc0eb, type: 3}
+      propertyPath: GroundObstacles.Array.data[2]
+      value: 
+      objectReference: {fileID: 5481123721991859649, guid: 7d1e52552d52f4348a06f0af54d8ef0d, type: 3}
     - target: {fileID: 2904703226252582842, guid: 39d611d289bc36746ad20625c8abc0eb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.87951756
