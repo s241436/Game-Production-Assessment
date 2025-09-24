@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(Vector3.right * steerspeed, ForceMode.Force);
         }
+
         
         if (Input.GetKey(KeyCode.LeftArrow))
         {
