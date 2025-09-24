@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(-Vector3.forward * speed, ForceMode.Force);
         }
+
         
         if (Input.GetKey(KeyCode.LeftArrow))
         {
