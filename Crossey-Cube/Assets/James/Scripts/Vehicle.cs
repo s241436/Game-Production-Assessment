@@ -47,6 +47,8 @@ public class CarController : MonoBehaviour
     public TextMeshProUGUI Score;
 
     private Rigidbody carRb;
+
+    [SerializeField] int maxspeed;
     
     /*
         private CarLights carLights;
@@ -147,10 +149,18 @@ public class CarController : MonoBehaviour
 
 
 
-
+    void MaxSpeed()
+    {
+        Debug.Log(carRb.velocity.magnitude);
+        if (carRb.velocity.magnitude > 100)
+        {
+            carRb.velocity = carRb.velocity.normalized * maxspeed;
+        }
+    }
 
     void Move()
     {
+        MaxSpeed();
         foreach (var wheel in wheels)
         {
             wheel.wheelCollider.motorTorque = 600 * maxAcceleration * Time.deltaTime;
