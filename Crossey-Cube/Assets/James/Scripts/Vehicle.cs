@@ -192,22 +192,24 @@ public class CarController : MonoBehaviour
             wheel.wheelModel.transform.rotation = rot;
         }
     }
-/*
-    void WheelEffects()
-    {
-        foreach (var wheel in wheels)
-        {
-            //var dirtParticleMainSettings = wheel.smokeParticle.main;
 
-            if (Input.GetKey(KeyCode.Space) && wheel.axel == Axel.Rear && wheel.wheelCollider.isGrounded == true && carRb.velocity.magnitude >= 10.0f)
+   
+    /*
+        void WheelEffects()
+        {
+            foreach (var wheel in wheels)
             {
-                wheel.wheelEffectObj.GetComponentInChildren<TrailRenderer>().emitting = true;
-                wheel.smokeParticle.Emit(1);
+                //var dirtParticleMainSettings = wheel.smokeParticle.main;
+
+                if (Input.GetKey(KeyCode.Space) && wheel.axel == Axel.Rear && wheel.wheelCollider.isGrounded == true && carRb.velocity.magnitude >= 10.0f)
+                {
+                    wheel.wheelEffectObj.GetComponentInChildren<TrailRenderer>().emitting = true;
+                    wheel.smokeParticle.Emit(1);
+                }
+                else
+                {
+                    wheel.wheelEffectObj.GetComponentInChildren<TrailRenderer>().emitting = false;
+                }
             }
-            else
-            {
-                wheel.wheelEffectObj.GetComponentInChildren<TrailRenderer>().emitting = false;
-            }
-        }
-    }*/
+        }*/
 }
