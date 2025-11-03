@@ -49,7 +49,8 @@ public class CarController : MonoBehaviour
     private Rigidbody carRb;
 
     [SerializeField] int maxspeed;
-    
+    bool stopMoving;
+    bool clamprotation;
     /*
         private CarLights carLights;
     */
@@ -66,12 +67,17 @@ public class CarController : MonoBehaviour
     {
         GetInputs();
         AnimateWheels();
-        ClampRotationRigidbody();
+        if (clamprotation)
+        {
+            ClampRotationRigidbody();
+        }
+        
         /*WheelEffects();*/
     }
 
     void LateUpdate()
     {
+
         Move();
         Steer();
     }
@@ -95,36 +101,7 @@ public class CarController : MonoBehaviour
         }*/
     }
 
-   /* private float currentXRotation;
-    [SerializeField] float minXRotation;
-    [SerializeField] float maxXRotation;
-
-
-    void rotationClamp()
-    {
-
-        Quaternion currentXRotation = carRb.rotation;
-
-        float clampedX = Mathf.Clamp(0, -10f, 10f);
-
-
-
-        //Quaternion newRot = Quaternion.Slerp(currentXRotation)
-
-        currentXRotation = Mathf.Clamp(currentXRotation,  , maxXRotation);
-
-        if (carRb.MoveRotation.)
-        {
-
-        }
-        
-        carRb.MoveRotation(clampedX
-
-
-
-        carRb.maxAngularVelocity = maxXRotation;
-    }*/
-
+ 
 
 
     void ClampRotationRigidbody()
@@ -161,12 +138,17 @@ public class CarController : MonoBehaviour
     void Move()
     {
         MaxSpeed();
-        foreach (var wheel in wheels)
-        {
-            wheel.wheelCollider.motorTorque = 600 * maxAcceleration * Time.deltaTime;
 
-           
+        if (stopMoving == false)
+        {
+            foreach (var wheel in wheels)
+            {
+                wheel.wheelCollider.motorTorque = 600 * maxAcceleration * Time.deltaTime;
+
+
+            }
         }
+        
     }
 
     void Steer()
@@ -193,7 +175,19 @@ public class CarController : MonoBehaviour
         }
     }
 
-   
+    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            if (carRb.velocity.magnitude < 5)
+            {
+                carRb.mass = 0;
+                clamprotation = false;
+            }
+            
+        }
+    }
     /*
         void WheelEffects()
         {

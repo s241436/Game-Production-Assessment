@@ -22,23 +22,22 @@ public class SectionInstantiate : MonoBehaviour
             if (tileSpawned == false)
             {
                 SpawnTile();
-                SpawnTile();
-                SpawnTile();
                 tileSpawned = true;
             }
         }
     }
 
+
+
     private void OnTriggerExit(Collider other)
     {
         tileSpawned = false;
         
-        MuscleCar = GetComponent<CarController>();
-
         MuscleCar.score += 20;
         Debug.Log($"+{MuscleCar.score} Distance");
 
-        Destroy(other.gameObject);
+        
+        
     }
 
     void SpawnTile()
