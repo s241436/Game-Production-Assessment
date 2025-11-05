@@ -59,8 +59,9 @@ public class CarController : MonoBehaviour
         carRb = GetComponent<Rigidbody>();
         carRb.centerOfMass = _centerOfMass;
         moveInput = 1.0f;
+        carRb.interpolation = RigidbodyInterpolation.Interpolate;
 
-       /* carLights = GetComponent<CarLights>();*/
+        /* carLights = GetComponent<CarLights>();*/
     }
 
     public void FixedUpdate()
@@ -71,17 +72,11 @@ public class CarController : MonoBehaviour
         {
             ClampRotationRigidbody();
         }
-        
-        /*WheelEffects();*/
-    }
-
-    void LateUpdate()
-    {
 
         Move();
         Steer();
-    }
 
+    }
 
     public void SteerInput(float input)
     {
@@ -94,11 +89,8 @@ public class CarController : MonoBehaviour
 
         steerInput = Input.GetAxis("Horizontal");
 
-        /*// Optional: keep steering input if using keyboard
-        if (control == ControlMode.Keyboard)
-        {
-            
-        }*/
+     
+        
     }
 
  
@@ -109,15 +101,15 @@ public class CarController : MonoBehaviour
         Quaternion currentRot = carRb.rotation;
         Vector3 euler = currentRot.eulerAngles;
 
-        float x = (euler.x > 240) ? euler.x - 360 : euler.x;
-        float z = (euler.z > 240) ? euler.z - 360 : euler.z;
-        float y = (euler.y > 240) ? euler.y - 360 : euler.y;
+        float x = (euler.x > 180) ? euler.x - 360 : euler.x;
+        float z = (euler.z > 180) ? euler.z - 360 : euler.z;
+        float y = (euler.y > 180) ? euler.y - 360 : euler.y;
 
         float clampedX = Mathf.Clamp(x, -25f, 25f);
         float clampedZ = Mathf.Clamp(z, -25f, 25f);
         float clampedY = Mathf.Clamp(y, -25f, 25f);
 
-        Quaternion targetRot = Quaternion.Euler(clampedX, euler.y, clampedZ);
+        Quaternion targetRot = Quaternion.Euler(clampedX, clampedY, clampedZ);
         Quaternion newRot = Quaternion.Slerp(currentRot, targetRot, Time.fixedDeltaTime * 1f);
         carRb.MoveRotation(newRot);
 
@@ -188,22 +180,5 @@ public class CarController : MonoBehaviour
             carRb.AddExplosionForce(explosionForce, collision.contacts[0].point, 5f, 1f, ForceMode.Impulse);
         }
     }
-    /*
-        void WheelEffects()
-        {
-            foreach (var wheel in wheels)
-            {
-                //var dirtParticleMainSettings = wheel.smokeParticle.main;
 
-                if (Input.GetKey(KeyCode.Space) && wheel.axel == Axel.Rear && wheel.wheelCollider.isGrounded == true && carRb.velocity.magnitude >= 10.0f)
-                {
-                    wheel.wheelEffectObj.GetComponentInChildren<TrailRenderer>().emitting = true;
-                    wheel.smokeParticle.Emit(1);
-                }
-                else
-                {
-                    wheel.wheelEffectObj.GetComponentInChildren<TrailRenderer>().emitting = false;
-                }
-            }
-        }*/
 }

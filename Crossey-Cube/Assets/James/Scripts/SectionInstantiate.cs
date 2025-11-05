@@ -49,34 +49,18 @@ public class SectionInstantiate : MonoBehaviour
 
         nextSpawnPoint = tile.transform.GetChild(1).transform.position;
 
+        StartCoroutine(DestroyTile(tile));
 
     }
 
 
+    IEnumerator DestroyTile(GameObject tile)
+    {
+        // Wait for the specified delay time
+        yield return new WaitForSeconds(15f);
+
+        Destroy(tile);
+    }
 
 
-    /*
-        public float spawnDistance = 10f;s
-        private float lastSpawnX;
-
-        void GroundSpawnObstacles(Collider other)
-        {
-            random = Random.Range(0, GroundObstacles.Length);
-            lastSpawnX += spawnDistance;
-            Vector3 spawnPos = new Vector3(lastSpawnX, 0, 0);
-
-
-            if (portalSpawned == false)
-            {
-                Instantiate(groundPortal, spawnPos, Quaternion.identity);
-                portalSpawned = true;
-            }
-            else
-            {
-
-                Instantiate(GroundObstacles[random], spawnPos, Quaternion.identity);
-            }
-
-
-        }*/
 }
