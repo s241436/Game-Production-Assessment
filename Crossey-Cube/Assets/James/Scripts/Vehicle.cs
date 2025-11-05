@@ -50,7 +50,7 @@ public class CarController : MonoBehaviour
 
     [SerializeField] int maxspeed;
     bool stopMoving;
-    bool clamprotation;
+    public bool clamprotation = true;
     /*
         private CarLights carLights;
     */
@@ -109,14 +109,16 @@ public class CarController : MonoBehaviour
         Quaternion currentRot = carRb.rotation;
         Vector3 euler = currentRot.eulerAngles;
 
-        float x = (euler.x > 180) ? euler.x - 360 : euler.x;
-        float z = (euler.z > 180) ? euler.z - 360 : euler.z;
+        float x = (euler.x > 240) ? euler.x - 360 : euler.x;
+        float z = (euler.z > 240) ? euler.z - 360 : euler.z;
+        float y = (euler.y > 240) ? euler.y - 360 : euler.y;
 
-        float clampedX = Mathf.Clamp(x, -10f, 10f);
-        float clampedZ = Mathf.Clamp(z, -10f, 10f);
+        float clampedX = Mathf.Clamp(x, -25f, 25f);
+        float clampedZ = Mathf.Clamp(z, -25f, 25f);
+        float clampedY = Mathf.Clamp(y, -25f, 25f);
 
         Quaternion targetRot = Quaternion.Euler(clampedX, euler.y, clampedZ);
-        Quaternion newRot = Quaternion.Slerp(currentRot, targetRot, Time.fixedDeltaTime * 5f);
+        Quaternion newRot = Quaternion.Slerp(currentRot, targetRot, Time.fixedDeltaTime * 1f);
         carRb.MoveRotation(newRot);
 
         carRb.angularVelocity *= 0.5f;
@@ -175,17 +177,15 @@ public class CarController : MonoBehaviour
         }
     }
 
-    
+    [SerializeField] float explosionForce;
     private void OnCollisionEnter(Collision collision)
     {
+        // Only affect certain layers (like obstacles)
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            if (carRb.velocity.magnitude < 5)
-            {
-                carRb.mass = 0;
-                clamprotation = false;
-            }
+
             
+            carRb.AddExplosionForce(explosionForce, collision.contacts[0].point, 5f, 1f, ForceMode.Impulse);
         }
     }
     /*

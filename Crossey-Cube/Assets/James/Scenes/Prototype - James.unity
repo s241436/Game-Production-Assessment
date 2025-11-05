@@ -192,6 +192,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1874855988459816138, guid: 39d611d289bc36746ad20625c8abc0eb, type: 3}
+      propertyPath: MuscleCar
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1874855988459816138, guid: 39d611d289bc36746ad20625c8abc0eb, type: 3}
       propertyPath: nextSpawnPoint.x
       value: 0
       objectReference: {fileID: 0}
@@ -314,6 +318,14 @@ PrefabInstance:
     - target: {fileID: 4536622111813243693, guid: 39d611d289bc36746ad20625c8abc0eb, type: 3}
       propertyPath: minYRotation
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536622111813243693, guid: 39d611d289bc36746ad20625c8abc0eb, type: 3}
+      propertyPath: clamprotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536622111813243693, guid: 39d611d289bc36746ad20625c8abc0eb, type: 3}
+      propertyPath: explosionForce
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4536622111813243693, guid: 39d611d289bc36746ad20625c8abc0eb, type: 3}
       propertyPath: _centerOfMass.y
