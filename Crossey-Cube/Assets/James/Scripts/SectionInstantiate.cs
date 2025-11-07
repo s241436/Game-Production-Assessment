@@ -6,40 +6,13 @@ public class SectionInstantiate : MonoBehaviour
 {
 
     public GameObject[] GroundObstacles;
-    public CarController MuscleCar;
 
     int random = 0;
 
     [SerializeField] Vector3 nextSpawnPoint;
-
     [SerializeField] bool tileSpawned = false;
 
-    private void OnTriggerEnter(Collider other)
-    {
-
-        if (other.gameObject.CompareTag("Trigger"))
-        {
-            if (tileSpawned == false)
-            {
-                SpawnTile();
-                tileSpawned = true;
-            }
-        }
-    }
-
-
-
-    private void OnTriggerExit(Collider other)
-    {
-        tileSpawned = false;
-        
-        MuscleCar.score += 20;
-        Debug.Log($"+{MuscleCar.score} Distance");
-
-        
-        
-    }
-
+    
     void SpawnTile()
     {
 
@@ -49,18 +22,31 @@ public class SectionInstantiate : MonoBehaviour
 
         nextSpawnPoint = tile.transform.GetChild(1).transform.position;
 
-        StartCoroutine(DestroyTile(tile));
 
     }
 
-
-    IEnumerator DestroyTile(GameObject tile)
+    private void OnTriggerEnter(Collider other)
     {
-        // Wait for the specified delay time
-        yield return new WaitForSeconds(15f);
 
+        if (other.gameObject.CompareTag("Trigger"))
+        {
+            SpawnTile();
+            // Starts a courtine on the tile that the car had triggered
+            StartCoroutine(destroyTile(other.transform.parent.gameObject)); ;
+        }
+        
+
+    }
+
+    IEnumerator destroyTile(GameObject tile)
+    {
+        yield return new WaitForSeconds(5);
         Destroy(tile);
     }
+
+
+
+  
 
 
 }

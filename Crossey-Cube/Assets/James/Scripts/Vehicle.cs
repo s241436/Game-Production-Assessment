@@ -44,16 +44,16 @@ public class CarController : MonoBehaviour
     float steerInput;
 
     public float score = 0;
-    public TextMeshProUGUI Score;
+    public TextMeshProUGUI ScoreText;
 
     private Rigidbody carRb;
 
     [SerializeField] int maxspeed;
     bool stopMoving;
     public bool clamprotation = true;
-    /*
-        private CarLights carLights;
-    */
+    
+    //private CarLights carLights;
+   
     public void Start()
     {
         carRb = GetComponent<Rigidbody>();
@@ -61,7 +61,7 @@ public class CarController : MonoBehaviour
         moveInput = 1.0f;
         carRb.interpolation = RigidbodyInterpolation.Interpolate;
 
-        /* carLights = GetComponent<CarLights>();*/
+        //carLights = GetComponent<CarLights>();
     }
 
     public void FixedUpdate()
@@ -137,7 +137,7 @@ public class CarController : MonoBehaviour
         {
             foreach (var wheel in wheels)
             {
-                wheel.wheelCollider.motorTorque = 600 * maxAcceleration * Time.deltaTime;
+                wheel.wheelCollider.motorTorque = 600 * maxAcceleration * Time.fixedDeltaTime;
 
 
             }
@@ -172,13 +172,29 @@ public class CarController : MonoBehaviour
     [SerializeField] float explosionForce;
     private void OnCollisionEnter(Collision collision)
     {
+        
         // Only affect certain layers (like obstacles)
         if (collision.gameObject.CompareTag("Obstacle"))
         {
 
             
             carRb.AddExplosionForce(explosionForce, collision.contacts[0].point, 5f, 1f, ForceMode.Impulse);
+
         }
     }
 
+    private bool Checkpointtouched;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Trigger"))
+        {
+            
+            score += 1;
+            ScoreText.text = score.ToString();
+            other.gameObject.SetActive(false);
+        }
+
+
+    }
 }

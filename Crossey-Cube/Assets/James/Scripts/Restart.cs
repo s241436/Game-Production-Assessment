@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 public class Restart : MonoBehaviour
 {
    
+    public void backButton()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 
     public void RestartButton()
     {

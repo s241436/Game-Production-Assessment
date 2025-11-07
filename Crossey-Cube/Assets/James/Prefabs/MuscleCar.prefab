@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 6223199229887647292}
   m_Layer: 0
   m_Name: Car2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -604,10 +604,10 @@ WheelCollider:
     spring: 8000
     damper: 2000
     targetPosition: 0.5
-  m_SuspensionDistance: 0.3
+  m_SuspensionDistance: 0.45
   m_ForceAppPointDistance: 0
-  m_Mass: 20
-  m_WheelDampingRate: 0.25
+  m_Mass: 40
+  m_WheelDampingRate: 0.3
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
@@ -758,10 +758,10 @@ WheelCollider:
     spring: 8000
     damper: 2000
     targetPosition: 0.5
-  m_SuspensionDistance: 0.3
+  m_SuspensionDistance: 0.45
   m_ForceAppPointDistance: 0
-  m_Mass: 20
-  m_WheelDampingRate: 0.25
+  m_Mass: 40
+  m_WheelDampingRate: 0.3
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
@@ -913,7 +913,7 @@ GameObject:
   - component: {fileID: 1874855988459816138}
   m_Layer: 0
   m_Name: MuscleCar
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -947,7 +947,7 @@ Rigidbody:
   m_GameObject: {fileID: 7597572677335538823}
   serializedVersion: 4
   m_Mass: 350
-  m_Drag: 0
+  m_Drag: 0.001
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -964,7 +964,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &4536622111813243693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -978,11 +978,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   control: 0
-  maxAcceleration: 100
-  brakeAcceleration: 50
+  maxAcceleration: 40
   turnSensitivity: 0.3
   maxSteerAngle: 30
-  _centerOfMass: {x: 0, y: -0.9, z: 0}
+  _centerOfMass: {x: 0, y: -1.1, z: 0}
   wheels:
   - wheelModel: {fileID: 6980897553640533776}
     wheelCollider: {fileID: 3066655233274032202}
@@ -1004,6 +1003,11 @@ MonoBehaviour:
     wheelEffectObj: {fileID: 0}
     smokeParticle: {fileID: 0}
     axel: 1
+  score: 0
+  ScoreText: {fileID: 0}
+  maxspeed: 100
+  clamprotation: 1
+  explosionForce: 500
 --- !u!114 &1874855988459816138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1017,7 +1021,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GroundObstacles:
-  - {fileID: 6814893157161088092, guid: d47379f4c8289d0498e6e77ba69db1bc, type: 3}
+  - {fileID: 3225513985693095470, guid: cd427c5f837b5cc44bcfb48c76751316, type: 3}
+  - {fileID: 5481123721991859649, guid: 7d1e52552d52f4348a06f0af54d8ef0d, type: 3}
+  - {fileID: 5481123721991859649, guid: 40c8da86cb470a44d823802a9e9521dd, type: 3}
+  - {fileID: 5481123721991859649, guid: 695739cb66b99b04a8fa6357d0d95935, type: 3}
+  - {fileID: 5481123721991859649, guid: 7be1c1e533c5dec4f8e271cc837400fe, type: 3}
+  - {fileID: 5481123721991859649, guid: ac11eb6b7949c9a4296efb92e9895328, type: 3}
+  - {fileID: 5481123721991859649, guid: 0e9d8fc51129b3148abf7764a708c083, type: 3}
+  - {fileID: 5481123721991859649, guid: 938fc1a3f4b997c4881a9ea3a04b1fb3, type: 3}
+  - {fileID: 5481123721991859649, guid: 05467bde34c7a5242949c1dabc94dc5f, type: 3}
+  - {fileID: 2675298990752836544, guid: cf75386d4773bc04a91d7b0c5717dec2, type: 3}
+  - {fileID: 5236641719700506834, guid: dc4808c9922ce274b975ad7dba25b1ae, type: 3}
+  - {fileID: 904936580295190277, guid: 4d88bd2ed71350640a17a54c9132e19b, type: 3}
+  - {fileID: 904936580295190277, guid: 037116cc22a5c894d81adb5e6ad0998a, type: 3}
+  - {fileID: 904936580295190277, guid: 32ccdc97751083b4cb4aca22f4ab8bfa, type: 3}
+  - {fileID: 759971499583909205, guid: c2149133281421f4188e00c3aa213994, type: 3}
+  - {fileID: 1289159644571704054, guid: eedf626b7bad62e43a34ffae9ab9e08a, type: 3}
+  - {fileID: 4838598469662645225, guid: e304f46b95ef4c441a48364e9c1d9b9f, type: 3}
+  - {fileID: 4838598469662645225, guid: e6566bbc28f601543b89495446f75bd1, type: 3}
+  - {fileID: 4838598469662645225, guid: 2057b2dc0b056e3498e47ad3bf1bb390, type: 3}
+  nextSpawnPoint: {x: 0, y: 0, z: 400}
   tileSpawned: 0
 --- !u!1 &7727960801070518742
 GameObject:
@@ -1171,10 +1194,10 @@ WheelCollider:
     spring: 8000
     damper: 2000
     targetPosition: 0.5
-  m_SuspensionDistance: 0.3
+  m_SuspensionDistance: 0.45
   m_ForceAppPointDistance: 0
-  m_Mass: 20
-  m_WheelDampingRate: 0.25
+  m_Mass: 40
+  m_WheelDampingRate: 0.3
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
@@ -1242,10 +1265,10 @@ WheelCollider:
     spring: 8000
     damper: 2000
     targetPosition: 0.5
-  m_SuspensionDistance: 0.3
+  m_SuspensionDistance: 0.45
   m_ForceAppPointDistance: 0
-  m_Mass: 20
-  m_WheelDampingRate: 0.25
+  m_Mass: 40
+  m_WheelDampingRate: 0.3
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
