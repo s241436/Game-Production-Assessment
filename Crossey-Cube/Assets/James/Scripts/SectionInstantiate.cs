@@ -38,9 +38,10 @@ public class SectionInstantiate : MonoBehaviour
 
     }
 
+    [SerializeField] int deletedelay;
     IEnumerator destroyTile(GameObject tile)
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(deletedelay);
         Destroy(tile);
     }
 

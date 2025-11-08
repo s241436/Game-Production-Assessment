@@ -123,7 +123,7 @@ public class CarController : MonoBehaviour
     void MaxSpeed()
     {
         Debug.Log(carRb.velocity.magnitude);
-        if (carRb.velocity.magnitude > 100)
+        if (carRb.velocity.magnitude > maxspeed)
         {
             carRb.velocity = carRb.velocity.normalized * maxspeed;
         }
@@ -133,15 +133,15 @@ public class CarController : MonoBehaviour
     {
         MaxSpeed();
 
-        if (stopMoving == false)
+      
+        
+        foreach (var wheel in wheels)
         {
-            foreach (var wheel in wheels)
-            {
-                wheel.wheelCollider.motorTorque = 600 * maxAcceleration * Time.fixedDeltaTime;
+            wheel.wheelCollider.motorTorque = 600 * maxAcceleration * Time.fixedDeltaTime;
 
 
-            }
         }
+        
         
     }
 
@@ -193,6 +193,7 @@ public class CarController : MonoBehaviour
             score += 1;
             ScoreText.text = score.ToString();
             other.gameObject.SetActive(false);
+            maxspeed += 1;
         }
 
 
